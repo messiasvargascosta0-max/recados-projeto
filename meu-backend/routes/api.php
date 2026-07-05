@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::delete('/recados/{id}', [RecadoController::class, 'destroy']);
 
+    Route::put('/recados/{id}', [RecadoController::class, 'update']);
+
 });

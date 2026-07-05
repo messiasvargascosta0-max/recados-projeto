@@ -24,11 +24,19 @@ function Login() {
 
             navigate("/home");
 
-        }catch{
+        } catch (error) {
+            console.log(error.response);
 
-            alert("E-mail ou senha inválidos.");
+            console.log(error.response.data);
 
-        }
+    if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+    }
+
+    alert("E-mail ou senha inválidos.");
+
+}
 
     }
 

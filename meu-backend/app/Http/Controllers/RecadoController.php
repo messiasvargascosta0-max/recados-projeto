@@ -42,4 +42,23 @@ class RecadoController extends Controller
             'message' => 'Recado excluído com sucesso.'
         ]);
     }
+
+    // Atualizar recado
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'titulo' => 'required|max:255',
+        'texto' => 'required'
+    ]);
+
+    $recado = Recado::where('user_id', $request->user()->id)
+                    ->findOrFail($id);
+
+    $recado->update([
+        'titulo' => $request->titulo,
+        'texto' => $request->texto,
+    ]);
+
+    return response()->json($recado);
+}
 }
