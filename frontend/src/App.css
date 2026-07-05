@@ -6,60 +6,65 @@
 }
 
 body{
-    background:#f2f2f2;
+    background:#f3f5f7;
 }
 
 .container{
-
-    width:400px;
-
-    margin:60px auto;
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:10px;
-
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-
+    width:550px;
+    margin:40px auto;
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
 h1{
-
     text-align:center;
-
-    margin-bottom:25px;
-
+    margin-bottom:30px;
+    color:#222;
 }
 
-form{
+input,
+textarea{
 
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-input{
-
-    padding:12px;
-
+    width:100%;
+    padding:15px;
     margin-bottom:15px;
 
     border:1px solid #ccc;
+    border-radius:8px;
 
-    border-radius:5px;
+    font-size:16px;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:#0d6efd;
+
+}
+
+textarea{
+
+    resize:none;
+    height:100px;
 
 }
 
 button{
 
-    padding:12px;
+    width:100%;
+
+    padding:14px;
 
     border:none;
 
-    border-radius:5px;
+    border-radius:8px;
 
     background:#0d6efd;
 
@@ -69,42 +74,119 @@ button{
 
     cursor:pointer;
 
+    transition:.2s;
+
 }
 
 button:hover{
 
-    background:#0b5ed7;
+    opacity:.92;
 
 }
 
-p{
+button:disabled{
+
+    background:#999;
+    cursor:not-allowed;
+
+}
+
+hr{
+
+    margin:30px 0;
+
+    border:none;
+
+    border-top:1px solid #ddd;
+
+}
+
+.card{
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    background:white;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+
+    color:#222;
+
+    margin-bottom:10px;
+
+}
+
+.card p{
+
+    color:#555;
+
+    margin-bottom:20px;
+
+    line-height:24px;
+
+}
+
+.acoes{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.editar{
+
+    background:#ffc107;
+    color:#000;
+
+}
+
+.excluir{
+
+    background:#dc3545;
+
+}
+
+.logout{
+
+    background:#6c757d;
+    width:120px;
+    margin-bottom:20px;
+
+}
+
+.cancelar{
+
+    background:#6c757d;
+    margin-top:10px;
+
+}
+
+.link{
 
     text-align:center;
-
     margin-top:20px;
 
 }
 
-a{
+.link a{
 
     text-decoration:none;
-
     color:#0d6efd;
-
-    margin-left:5px;
 
 }
 
-textarea{
+.link a:hover{
 
-    padding:12px;
-
-    border:1px solid #ccc;
-
-    border-radius:5px;
-
-    margin-bottom:15px;
-
-    resize:none;
+    text-decoration:underline;
 
 }

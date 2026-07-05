@@ -31,9 +31,11 @@ function Home() {
             const token = localStorage.getItem("token");
 
             const response = await api.get("/recados", {
+
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
+
             });
 
             setRecados(response.data);
@@ -51,8 +53,11 @@ function Home() {
         e.preventDefault();
 
         if (!titulo.trim() || !texto.trim()) {
+
             alert("Preencha todos os campos.");
+
             return;
+
         }
 
         try {
@@ -61,32 +66,42 @@ function Home() {
 
             if (editando) {
 
-                await api.put(`/recados/${editando}`,
+                await api.put(
+
+                    `/recados/${editando}`,
+
                     {
                         titulo,
                         texto
                     },
+
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     }
+
                 );
 
                 alert("Recado atualizado com sucesso!");
 
             } else {
 
-                await api.post("/recados",
+                await api.post(
+
+                    "/recados",
+
                     {
                         titulo,
                         texto
                     },
+
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     }
+
                 );
 
                 alert("Recado criado com sucesso!");
@@ -94,6 +109,7 @@ function Home() {
             }
 
             limparFormulario();
+
             carregarRecados();
 
         } catch (error) {
@@ -113,8 +129,11 @@ function Home() {
         setEditando(recado.id);
 
         window.scrollTo({
+
             top: 0,
+
             behavior: "smooth"
+
         });
 
     }
@@ -129,20 +148,22 @@ function Home() {
 
     async function excluirRecado(id) {
 
-        const confirmar = window.confirm(
-            "Deseja realmente excluir este recado?"
-        );
+        if (!window.confirm("Deseja realmente excluir este recado?")) {
 
-        if (!confirmar) return;
+            return;
+
+        }
 
         try {
 
             const token = localStorage.getItem("token");
 
             await api.delete(`/recados/${id}`, {
+
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
+
             });
 
             alert("Recado excluído com sucesso!");
@@ -153,7 +174,7 @@ function Home() {
 
             console.log(error);
 
-            alert("Erro ao excluir.");
+            alert("Erro ao excluir o recado.");
 
         }
 
@@ -174,11 +195,8 @@ function Home() {
             <h1>Meus Recados</h1>
 
             <button
+                className="logout"
                 onClick={logout}
-                style={{
-                    background: "#6c757d",
-                    marginBottom: "20px"
-                }}
             >
                 Logout
             </button>
@@ -186,101 +204,109 @@ function Home() {
             <form onSubmit={salvarRecado}>
 
                 <input
+
                     type="text"
+
                     placeholder="Título"
+
                     value={titulo}
+
                     onChange={(e) => setTitulo(e.target.value)}
+
                 />
 
                 <textarea
+
                     placeholder="Texto do recado"
+
                     value={texto}
+
                     onChange={(e) => setTexto(e.target.value)}
-                    style={{
-                        width: "100%",
-                        height: "90px",
-                        marginTop: "15px",
-                        padding: "10px",
-                        borderRadius: "6px",
-                        border: "1px solid #ccc",
-                        resize: "none",
-                        fontSize: "16px"
-                    }}
+
                 />
 
                 <button
+
                     type="submit"
+
                     disabled={!titulo.trim() || !texto.trim()}
-                    style={{
-                        marginTop: "20px",
-                        width: "100%"
-                    }}
+
                 >
+
                     {editando ? "Atualizar Recado" : "Salvar Recado"}
+
                 </button>
 
                 {editando && (
 
                     <button
+
                         type="button"
+
+                        className="cancelar"
+
                         onClick={limparFormulario}
-                        style={{
-                            width: "100%",
-                            marginTop: "10px",
-                            background: "#6c757d"
-                        }}
+
                     >
+
                         Cancelar
+
                     </button>
 
                 )}
 
             </form>
 
-            <hr style={{ margin: "30px 0" }} />
+            <hr />
 
             {recados.length === 0 ? (
 
-                <p>Nenhum recado cadastrado.</p>
+                <p style={{ textAlign: "center" }}>
+
+                    Nenhum recado cadastrado.
+
+                </p>
 
             ) : (
 
                 recados.map((recado) => (
 
                     <div
+                        className="card"
                         key={recado.id}
-                        style={{
-                            border: "1px solid #ddd",
-                            borderRadius: "10px",
-                            padding: "20px",
-                            marginBottom: "20px",
-                            boxShadow: "0 2px 8px rgba(0,0,0,0.08)"
-                        }}
                     >
 
                         <h3>{recado.titulo}</h3>
 
                         <p>{recado.texto}</p>
 
-                        <button
-                            onClick={() => editarRecado(recado)}
-                            style={{
-                                background: "#ffc107",
-                                color: "#000",
-                                marginRight: "10px"
-                            }}
-                        >
-                            Editar
-                        </button>
+                        <div className="acoes">
 
-                        <button
-                            onClick={() => excluirRecado(recado.id)}
-                            style={{
-                                background: "#dc3545"
-                            }}
-                        >
-                            Excluir
-                        </button>
+                            <button
+
+                                className="editar"
+
+                                onClick={() => editarRecado(recado)}
+
+                            >
+
+                                Editar
+
+                            </button>
+
+                            <button
+
+                                className="excluir"
+
+                                onClick={() => excluirRecado(recado.id)}
+
+                            >
+
+                                Excluir
+
+                            </button>
+
+                        </div>
 
                     </div>
 
